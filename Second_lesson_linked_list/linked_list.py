@@ -51,6 +51,45 @@ class LinkedList:
         newNode = Node(data)
         newNode.next = nextNode
         previousNode.next = newNode
+    
+    def deleteAtIndex(self,index):
+        temp = self.head
+        ## At first index
+        if index==0:
+            self.head = temp.next
+            temp = None
+            return
+
+        for i in range(index):
+            if i==0:
+                continue    
+            temp = temp.next
+        prevNode = temp
+        temp = temp.next
+        prevNode.next = temp.next
+        temp = None
+    
+    def deleteKey(self,data):
+        temp = self.head
+        if not temp : 
+            return
+        if temp.data == data:
+            self.head = temp.next
+            temp = None
+            return
+        while temp.data != data:
+            prevNode = temp
+            temp = temp.next
+            if(temp==None):
+                return
+        if temp == None:
+            return
+        prevNode.next = temp.next
+        temp = None
+
+            
+
+        
 
 
 if __name__ == "__main__" :
@@ -59,4 +98,8 @@ if __name__ == "__main__" :
     linkedList.pushAtIndex(1,"Shanba")
     linkedList.pushAtIndex(1,"Shanba kechasi")
     linkedList.pushAtIndex(2,"Juma")
+    linkedList.printList()
+    linkedList.deleteKey('das')
+    linkedList.pushAtIndex(5,'data')
+    print()
     linkedList.printList()
