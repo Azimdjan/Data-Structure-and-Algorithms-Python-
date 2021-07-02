@@ -43,13 +43,13 @@ def binarySearch(arr,num,start=0,end=None):
         return binarySearch(arr,num,mid+1,end)
 
 def quickSort(arr):
-    if len(arr)<2:
+    if len(arr) > 2:
+        pivot = arr.pop(randrange(len(arr)))
+        small = [i for i in arr if i<=pivot]
+        big = [j for j in arr if j>pivot]
+        return quickSort(small) + [pivot] + quickSort(big)
+    else:
         return arr
-    pivot = arr.pop(randrange(len(arr)))
-    less = [i for i in arr if i<=pivot]
-    bigger = [i for i in arr if i>pivot]
-    return quickSort(less) + [pivot] + quickSort(bigger)
-
 if __name__ == '__main__':
     myList = [15,20,13,14,155,60,70,48,39]
     print(quickSort(myList))
